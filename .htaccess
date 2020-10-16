@@ -1,0 +1,39 @@
+
+RewriteOptions inherit
+RewriteEngine On 
+
+RewriteCond %{SERVER_PORT} 80
+RewriteCond %{HTTP_HOST} ^tyler\.cloud$ [OR]
+# RewriteCond %{HTTP_HOST} ^www\.tyler\.cloud$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/(?:\ Ballot169)?
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+# RewriteRule ^(.*)$ https://www.tyler.cloud/$1 [R,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/(?:\ Ballot169)?
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^contact$ "https\:\/\/docs\.google\.com\/forms\/d\/1rdB\-9RZ5J8UhnMNZX4SPydz28g7Fqq6Uk0Vuqx1upuU" [R=301,L]
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^certifications$ "https\:\/\/oradocs\-corp\.documents\.us2\.oraclecloud\.com\/documents\/link\/LF2B17B15188DBE9A0AA2E78F6C3FF17C1177A968060\/folder\/F2B1935742B06C1E0172C3D8F6C3FF17C1177A968060\/_Certification_Study_Materials" [R=301,L]
+php_flag display_errors on
+
+# Added 6-5-20 for security:
+# Header set Content-Secure-Policy "default-src 'self';"
+# Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+# Header set X-Content-Type-Options: nosniff
+# Header set X-XSS-Protection "1; mode=block"
+
+# Added 8-20-20 to redirect always to https:
+# RewriteBase /
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# Added 9-15-20 to redirect always to https and no-www:
+RewriteCond %{HTTPS} off 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+
+# Disallow Indexing
+# Options -Indexes
