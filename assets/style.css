@@ -124,8 +124,13 @@
       /* background: #d55b5b; */
     }
 
-    #storePage {
-      display: none;
+    hr {
+      border: 1px solid #424242;
+      background: #424242;
+      margin-top: 20px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .mobile-menu {
@@ -221,7 +226,7 @@
 /* Body */
 
     .attributeContainer {
-      padding-bottom: 40px;
+      padding-bottom: 20px;
     }
 
     .attributeMap {
@@ -233,13 +238,16 @@
       display: inline-block;
     }
 
-    .fa-map-marker {
-      color: #b45353;
+    .fa-cloud {
+      color: whitesmoke;
+      font-size: 32px;
       padding-right: 8px;
     }
 
-    .fa-code {
-      color: #7f7fe6;
+    .fa-clock-o {
+      color: whitesmoke;
+      font-size: 32px;
+      font-weight: 100;
       padding-right: 8px;
     }
 
@@ -253,7 +261,6 @@
       float: left;
       width: 50%;
       padding-right: 60px;
-      margin-top: 8%;
     }
 
     .face {
@@ -283,8 +290,11 @@
     }
 
     .headline {
-      font-size: 44px;
-      font-weight:normal
+      font-weight: 100;
+      font-size: 32px;
+      padding-bottom: 15px;
+      text-align: left;
+      padding-left: 10%;
     }
 
     .underTextArea {
@@ -472,7 +482,6 @@
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 30px;
-        margin-top: 40px;
       }
 
       .face {
@@ -486,10 +495,6 @@
 
       .fa-map-marker {
         padding-left: 30px;
-      }
-
-      .headline {
-        font-size: 32px;
       }
 
       #bodyFeedback {
@@ -537,7 +542,6 @@
 
       .column2 {
         width: 60%;
-        margin-top: 20px;
       }
 
       .face {
