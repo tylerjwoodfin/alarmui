@@ -30,25 +30,35 @@
     <div id="topBar"></div> <!-- Use this to insert topBar.html -->
     
     <div class="column1">
-        <img src="assets/weather/cloudy.svg" style="top: 0px; width: 80%; margin-left: 10%;"></img>
-        <p style="font-size: 72px; font-weight:300; bottom: 60px; text-align: center;">72°</p>
+        <img src="assets/weather/cloudy.svg" style="top: 0px; width: 100%; background-position: center center; background-repeat: no-repeat;">
+        <div style="position: absolute; left: 14%; top: 65%; z-index: -1;">
+          <p style="font-size: 72px; font-weight:300; text-align: center;">73°</p>
+        </div>
+        <div style="text-align: center; padding-top: 5px;">
+          <a href="#" class="dashed">Round Rock, TX</a>
+        </div>
     </div>
 
     <div class="column2">
-        <h1 class="headline">Hi, I'm Tyler Woodfin.</h1>
-        
-        <p style="font-size: 18px; padding-bottom: 20px;">
+      <div class="attributeContainer">
+        <div class="attributeMap"><em class="fa fa-cloud" aria-hidden="true"></em>12 devices online</div>
+        <div class="attributeCode"><em class="fa fa-clock-o"></em>12:34pm</div>
 
-          <div class="attributeContainer">
-            <div class="attributeMap"><em class="fa fa-map-marker" aria-hidden="true"></em>Austin, TX</div>
-            <div class="attributeCode"><em class="fa fa-code"></em>Software Engineer</div>
-          </div>
-        
-        </p>
+        <hr>
+      </div>
 
-        <h2 id="bodyFeedback">
-          This is a space to host all of my projects.<br>Please <a onClick="feedback()" class="dashed" >reach out</a> if you'd like to get in touch.
-        </h2>
+      
+
+      <h1 class="headline">Lights</h1>
+
+      <h1 class="headline">Locks</h1>
+
+      <h1 class="headline">Cameras</h1>
+
+      <h1 class="headline">Devices</h1>
+
+      <h1 class="headline">Calendar</h1>
+
     </div>
 
   </body>
