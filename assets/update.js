@@ -29,7 +29,11 @@ function readFile(file)
 zipCode = readFile('secure/ZipCode');
 apiKey = readFile('secure/WeatherAPI');
 const updateWeather = async () => {
+
+    // if you live outside the US, replace "zip=" in the line below with something else, then edit 
+    // secure/ZipCode with the parameter you chose. See https://openweathermap.org/current for details.
     const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + '&appid=' + apiKey);
+    
     const weather = await response.json(); //extract JSON from the http response
     // console.log(weather);
 
@@ -54,13 +58,33 @@ function formatAMPM(date) {
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0'+minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
+    strTime = hours + ':' + minutes + ' ' + ampm;
     document.getElementById("clock").innerHTML = `<em class="fa fa-clock-o"></em>` + strTime;
 }
 
+/* Get # of devices online */
+function getDevicesCount()
+{
+    scan = readFile('secure/scan.txt');
+    numberOfDevices = 0;
+
+    if(scan.includes("addresses ("))
+    {
+        numberOfDevices = scan.split("addresses (")[1].split(" hosts")[0];
+    }
+
+    console.log("Number of Devices: " + numberOfDevices);
+
+    document.getElementById("deviceCount").innerHTML = `<em class="fa fa-cloud" aria-hidden="true"></em>` + numberOfDevices +` devices online`;
+}
+
+/* Execute */
 $( document ).ready(function() {
-    /* Execute */
-    console.log();
     updateWeather();
-    formatAMPM(new Date);
+    getDevicesCount();
+
+    // set update intervals
+    setInterval('updateWeather()', 300000); // update every 5 minutes
+    setInterval('formatAMPM(new Date)', 1000);
+    setInterval('getDevicesCount()', 60000);
 });
