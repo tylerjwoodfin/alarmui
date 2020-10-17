@@ -21,6 +21,9 @@
     <!-- Load remaining coments -->
     <script src="../assets/theme.js"></script>
 
+    <!-- update components -->
+    <script src="../assets/update.js"></script>
+
   </head>
 
   <!-- Thanks for looking at my source code! If you'd like to know more about my skills and qualifications, please request a resume through the feedback link on this page. -->
@@ -30,19 +33,21 @@
     <div id="topBar"></div> <!-- Use this to insert topBar.html -->
     
     <div class="column1">
-        <img src="assets/weather/cloudy.svg" style="top: 0px; width: 100%; background-position: center center; background-repeat: no-repeat;">
+        <img id="weatherIcon" src="assets/weather/offline.png" style="top: 0px; width: 100%; background-position: center center; background-repeat: no-repeat;">
         <div style="position: absolute; left: 14%; top: 65%; z-index: -1;">
-          <p style="font-size: 72px; font-weight:300; text-align: center;">73°</p>
+          <p id="temperature" style="font-size: 72px; font-weight:300; text-align: center;">- -°</p>
         </div>
         <div style="text-align: center; padding-top: 5px;">
-          <a href="#" class="dashed">Round Rock, TX</a>
+          <a id="location" href="#" class="dashed">Tap to retry</a>
+
+          <!-- https://api.openweathermap.org/data/2.5/weather?zip={ZIP}&appid={API KEY} -->
         </div>
     </div>
 
     <div class="column2">
       <div class="attributeContainer">
         <div class="attributeMap"><em class="fa fa-cloud" aria-hidden="true"></em>12 devices online</div>
-        <div class="attributeCode"><em class="fa fa-clock-o"></em>12:34pm</div>
+        <div class="attributeCode" id="clock"><em class="fa fa-clock-o"></em>--:-- qm</div>
 
         <hr>
       </div>
