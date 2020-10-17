@@ -28,44 +28,5 @@
             this.classList.toggle("active");
             document.querySelector(".mobile-menu").classList.toggle("active");
         });
-    
-    document.getElementById("appsButton").addEventListener("click", function(){
-
-        appsDisplayed = !appsDisplayed;
-
-        if(appsDisplayed)
-        {
-            // console.log("Displaying");
-            document.getElementById("appsButton").innerHTML = `PROJECTS&nbsp;&nbsp;<i class="fa fa-caret-up" aria-hidden="true"></i>`;
-            document.getElementById("appMenu").style.display = "block";
-            document.getElementById("hamburger").style.display = "block";
-            document.getElementById("appsButton").style.background = "#333";
-            document.getElementById("appsButton").style.border = "2px solid #fff";  // update in style.css too
-        }
-        else
-        {
-            // console.log("Hiding");
-            document.getElementById("appsButton").innerHTML = `PROJECTS&nbsp;&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>`;
-            document.getElementById("appMenu").style.display = "none";
-            document.getElementById("appsButton").style.background = "";
-            document.getElementById("appsButton").style.border = "2px solid transparent";  // update in style.css too
-        }
-    });
-
-    // Hover events for the appsButton, since other events only apply to "hrefs"
-    document.getElementById("appsButton").addEventListener("mouseover", function(){
-        document.getElementById("appsButton").style.background = "#333";
-        document.getElementById("appsButton").style.border = "2px solid #fff";
-    });
-
-    document.getElementById("appsButton").addEventListener("mouseout", function(){
-
-        if(!appsDisplayed)
-        {
-            document.getElementById("appsButton").style.background = "";
-            document.getElementById("appsButton").style.border = "2px solid transparent";
-        }
-
-    });
 
 </script>
