@@ -9,6 +9,7 @@ This is NOT a fully working project at this time! It's a work in progress with a
 # Dependencies
 - Raspberry Pi (or other Linux machine, but Pi strongly preferred)
 - Apache
+- PHP for Apache (sudo apt install php libapache2-mod-php -y)
 - nmap (sudo apt install nmap)
 - NodeJS
 
