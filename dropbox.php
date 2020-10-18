@@ -1,4 +1,3 @@
 <?php
-    echo shell_exec('ls -lart');
-
+    shell_exec('rclone copy Dropbox:Notes/Tasks.txt /var/www/html/secure/Tasks.txt');
 ?> 
