@@ -96,7 +96,9 @@ function dropbox()
     $.ajax({
         url: 'dropbox.php',
         type: 'get',
-        success: function(response) { alert(response); }
+        success: function(response) {
+            alert(readFile('secure/Tasks.txt'));
+         }
     });
 
 }
