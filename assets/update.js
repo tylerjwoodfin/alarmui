@@ -36,7 +36,6 @@ function getGreeting()
 {
     greetings = readFile('assets/greetings.txt').split("<br>");
     selectedGreeting = Math.floor(Math.random() * Math.floor(greetings.length));
-    console.log(greetings);
 
     document.getElementById("greeting").innerText = greetings[selectedGreeting];
 }
@@ -51,13 +50,11 @@ const updateWeather = async () => {
     const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + '&appid=' + apiKey);
     
     const weather = await response.json(); //extract JSON from the http response
-    // console.log(weather);
 
     // get temperature
     if(!(typeof weather === 'undefined'))
     {
         temperature = Math.round((weather.main.temp - 273.15) * 9/5 + 32);
-        console.log("Temperature: " + temperature);
     
         // set temperature element
         document.getElementById("temperature").innerHTML = temperature + "°";
@@ -89,16 +86,27 @@ function getDevicesCount()
         numberOfDevices = scan.split("addresses (")[1].split(" hosts")[0];
     }
 
-    console.log("Number of Devices: " + numberOfDevices);
-
     document.getElementById("deviceCount").innerHTML = `<em class="fa fa-cloud" aria-hidden="true"></em>` + numberOfDevices +` devices online`;
+}
+
+/* Dropbox */
+function dropbox()
+{
+    // Get File
+    $.ajax({
+        url: 'dropbox.php',
+        type: 'get',
+        success: function(response) { alert(response); }
+    });
+
 }
 
 /* Execute */
 $( document ).ready(function() {
     getGreeting();
-    updateWeather();
+    // updateWeather();
     getDevicesCount();
+    dropbox();
 
     // set update intervals
     // setInterval('updateWeather()', 300000); // update every 5 minutes
