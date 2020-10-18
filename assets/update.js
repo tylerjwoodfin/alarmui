@@ -26,7 +26,7 @@ function readFile(file)
     hours = new Date().getHours();
     timeOfDay = hours < 12 ? "morning" : hours < 18 ? "afternoon" : "evening"; 
     
-    result = result.replaceAll("%time", timeOfDay);
+    result = result.replace("/%time/g", timeOfDay);
     
     return result;
 }
