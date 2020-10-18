@@ -21,8 +21,24 @@ function readFile(file)
     {
         return `<a href="` + file + `" target="_new"><img src="` + file + `" class="blogImg"></a>`;
     }
+
+    /* Parse variables */
+    hours = new Date().getHours();
+    timeOfDay = hours < 12 ? "morning" : hours < 18 ? "afternoon" : "evening"; 
+    
+    result = result.replaceAll("%time", timeOfDay);
     
     return result;
+}
+
+/* Greeting */
+function getGreeting()
+{
+    greetings = readFile('assets/greetings.txt').split("<br>");
+    selectedGreeting = Math.floor(Math.random() * Math.floor(greetings.length));
+    console.log(greetings);
+
+    document.getElementById("greeting").innerText = greetings[selectedGreeting];
 }
 
 /* Weather */
@@ -80,11 +96,13 @@ function getDevicesCount()
 
 /* Execute */
 $( document ).ready(function() {
+    getGreeting();
     updateWeather();
     getDevicesCount();
 
     // set update intervals
-    setInterval('updateWeather()', 300000); // update every 5 minutes
+    // setInterval('updateWeather()', 300000); // update every 5 minutes
     setInterval('formatAMPM(new Date)', 1000);
     setInterval('getDevicesCount()', 60000);
+    setInterval('getGreeting()', 600000);
 });
