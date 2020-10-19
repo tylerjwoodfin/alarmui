@@ -1,0 +1,6 @@
+/* List everything you do to get ready for bed, then check it off in AlarmUI as you go along. */
+Allergy Drops
+Medicine
+Floss
+Exercise
+Clean Kitchen
