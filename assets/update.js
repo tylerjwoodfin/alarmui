@@ -92,15 +92,19 @@ function getDevicesCount()
 /* Dropbox */
 function getTasks()
 {
-    // Get File
+    tasksFile = "I can't open your Tasks file. Please set up Rclone- see the documentation for details.";
+
     $.ajax({
         url: 'tasks.php',
         type: 'get',
         async: false,
         success: function(response) {
-            alert(readFile('secure/cache/Tasks.txt'));
+            tasksFile = readFile('secure/cache/Tasks.txt');
          }
     });
+
+    tasksFile = tasksFile.replace(/<br>/gi, "\n");
+    alert(tasksFile);
 
 }
 
