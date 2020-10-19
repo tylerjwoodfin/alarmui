@@ -108,12 +108,18 @@ function getTasks()
 
 }
 
+/* Bedtime File */
+function getBedtime()
+{
+    nightFile = readFile("assets/bedtime.txt").split("<br>");
+    alert(nightFile);
+}
+
 /* Execute */
 $( document ).ready(function() {
     getGreeting();
     // updateWeather();
     getDevicesCount();
-    getTasks();
 
     // set update intervals
     // setInterval('updateWeather()', 300000); // update every 5 minutes
