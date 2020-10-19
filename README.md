@@ -12,6 +12,7 @@ This is NOT a fully working project at this time! It's a work in progress with a
 - PHP for Apache (sudo apt install php libapache2-mod-php -y)
 - nmap (sudo apt install nmap)
 - NodeJS
+- Rclone
 
 # Strongly Recommended
 - Raspberry Pi running Raspberry Pi OS
@@ -22,7 +23,7 @@ This is NOT a fully working project at this time! It's a work in progress with a
     - Check that Apache is working by going to your Pi's IP address in your browser. You should see a "It works!" page.
 
 2. Copy and paste this code into the terminal:
-    > cd /var/www/html; rm index.html; mkdir secure; cd secure; make WeatherAPI; make ZipCode;
+    > cd /var/www/html; rm index.html; mkdir secure; cd secure; make WeatherAPI; make ZipCode; make TasksFile;
 
 3. Place this README and everything in this current directory in /var/www/html
 
@@ -34,5 +35,32 @@ This is NOT a fully working project at this time! It's a work in progress with a
 
 6. Edit /var/www/html/weatherAPI and enter your OpenWeatherMap API key. You can get one for free at https://openweathermap.org/api.
 
+## Rclone setup (for "Tasks" and "Bedtime")
+
+7. > rclone config
+    - "n" for new remote
+    - Enter the name of your choice (I use "dropbox", and the scripts in this repo reflect that.)
+        - If you choose something other than "dropbox", make sure to update tasks.php.
+    - 9 for Dropbox (Others should work, update tasks.php and refer to the rclone documentation for syntax. The rest of these steps could be different depending on your choice)
+    - Leave "client id" and "client secret" blank by pressing Enter
+    - Don't edit advanced config ("n")
+    - Use auto config ("y")
+    - Follow the prompts to log into your Dropbox account and finish the rclone setup
+
+8. Enable browser access:
+    > sudo nano /etc/apache2/envvars
+    - Replace "www-data" with "pi" (or your Pi's username) in APACHE_RUN_USER and APACHE_RUN_GROUP as follows:
+        > export APACHE_RUN_USER=pi
+
+        > export APACHE_RUN_GROUP=pi
+
+    * Note that doing this is a security risk. It means anything that has access to AlarmUI can theoretically have access to everything you as "Pi" do. Please only do this if you understand the risks, and please do not enable remote access to your AlarmUI setup over the internet. I listed these steps only because this is the best way I found to use Rclone. 
+
+9. Edit secure/TasksFile to point to the path of your Dropbox tasks file (For example, mine is "Notes/Tasks.txt", without the quotes)
+
 # Running AlarmUI
 Navigate to your Pi's local IP address in Chromium, then enter full-screen.
+
+# Disclaimer
+
+Although this is a pretty straightforward setup and the risks are fairly minimal, I do not take responsibility for any data loss, damage to your device/network, or any other issues that arise from using this, whether or not you're following the steps properly. I've written this documentation with the assumption that you have a understanding of Linux and the Raspberry Pi, as well as the risks of installing new software.
