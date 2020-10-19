@@ -3,4 +3,4 @@ How's your %time?
 How's it going?
 It's nice to see you.
 Hey, how are you?
-Are you doing well?
+How's your %time going?

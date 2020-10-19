@@ -90,15 +90,15 @@ function getDevicesCount()
 }
 
 /* Dropbox */
-function dropbox()
+function getTasks()
 {
     // Get File
     $.ajax({
-        url: 'dropbox.php',
+        url: 'tasks.php',
         type: 'get',
         async: false,
         success: function(response) {
-            alert(readFile('secure/Tasks.txt'));
+            alert(readFile('secure/cache/Tasks.txt'));
          }
     });
 
@@ -109,7 +109,7 @@ $( document ).ready(function() {
     getGreeting();
     // updateWeather();
     getDevicesCount();
-    dropbox();
+    getTasks();
 
     // set update intervals
     // setInterval('updateWeather()', 300000); // update every 5 minutes
