@@ -42,7 +42,28 @@ function getHeadline()
     document.getElementById("headline").innerText = headlines[selectedHeadline];
 
     // pre-load greeting
-    document.getElementById("greeting").innerText = readFile('secure/Greeting');
+    greeting = readFile('secure/Greeting').split("<br>");
+    greetingHeader = "";
+    greetingSubHeader = "";
+
+    for(i in greeting)
+    {
+        if(greeting[i] != '\r' && greeting[i][0] != "#")
+        {
+            if(greetingHeader.length == 0)
+            {
+                greetingHeader = greeting[i];
+            }
+            else if(greetingSubHeader.length == 0)
+            {
+                console.log("Setting subheader, length " + greeting[i].length + "." + greeting[i] + ".");
+                greetingSubHeader = greeting[i];
+            }
+        }
+    }
+
+    document.getElementById("greeting").innerText = greetingHeader;
+    document.getElementById("greetingSub").innerText = greetingSubHeader;
 }
 
 /* Weather */
@@ -128,19 +149,23 @@ function toggleGreetingMode()
     if(isGreetingMode)
     {
         document.getElementById("menuItems").style.display = "none";
+        document.getElementById("hamburger").style.display = "none";
         document.getElementById("greeting").style.display = "";
+        document.getElementById("greetingSub").style.display = "";
     }
     else
     {
         document.getElementById("menuItems").style.display = "";
         document.getElementById("greeting").style.display = "none";
+        document.getElementById("greetingSub").style.display = "none";
+        document.getElementById("hamburger").style.display = "";
     }
 }
 
 /* Execute */
 $( document ).ready(function() {
     getHeadline();
-    updateWeather();
+    // updateWeather();
     getDevicesCount();
 
     // set update intervals
