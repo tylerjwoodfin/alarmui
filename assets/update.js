@@ -1,3 +1,5 @@
+var isGreetingMode = false;
+
 /* Read Files */
 function readFile(file)
 {
@@ -31,13 +33,16 @@ function readFile(file)
     return result;
 }
 
-/* Greeting */
-function getGreeting()
+/* Headline */
+function getHeadline()
 {
-    greetings = readFile('assets/greetings.txt').split("<br>");
-    selectedGreeting = Math.floor(Math.random() * Math.floor(greetings.length));
+    headlines = readFile('assets/headlines.txt').split("<br>");
+    selectedHeadline = Math.floor(Math.random() * Math.floor(headlines.length));
 
-    document.getElementById("greeting").innerText = greetings[selectedGreeting];
+    document.getElementById("headline").innerText = headlines[selectedHeadline];
+
+    // pre-load greeting
+    document.getElementById("greeting").innerText = readFile('secure/Greeting');
 }
 
 /* Weather */
@@ -115,15 +120,32 @@ function getBedtime()
     alert(nightFile);
 }
 
+/* Toggle Greeting Mode */
+function toggleGreetingMode()
+{
+    isGreetingMode = !isGreetingMode;
+
+    if(isGreetingMode)
+    {
+        document.getElementById("menuItems").style.display = "none";
+        document.getElementById("greeting").style.display = "";
+    }
+    else
+    {
+        document.getElementById("menuItems").style.display = "";
+        document.getElementById("greeting").style.display = "none";
+    }
+}
+
 /* Execute */
 $( document ).ready(function() {
-    getGreeting();
-    // updateWeather();
+    getHeadline();
+    updateWeather();
     getDevicesCount();
 
     // set update intervals
     // setInterval('updateWeather()', 300000); // update every 5 minutes
     setInterval('formatAMPM(new Date)', 1000);
     setInterval('getDevicesCount()', 60000);
-    setInterval('getGreeting()', 600000);
+    setInterval('getHeadline()', 600000);
 });

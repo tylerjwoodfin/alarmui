@@ -30,35 +30,36 @@
 
   <body>
 
-    <header style="z-index: 2000;">
+    <header>
       <nav>
-          <a href="../" id="greeting">Is update.js missing?</a>
-      
-          <div id="hamburger">
-            <div class="line" id="one"></div>
-            <div class="line" id="two"></div>
-            <div class="line" id="three"></div>
-          </div>
+          <a href="../" id="headline">Is update.js missing?</a>
       </nav>
       
   </header>
   
   <div class="mobile-menu">
-  
-      <ul class="mobile-menu__items">
+      <div id="hamburger">
+        <div class="line" id="one"></div>
+        <div class="line" id="two"></div>
+        <div class="line" id="three"></div>
+      </div>
+
+      <ul class="mobile-menu__items" id="menuItems">
           <a href="../"><li>Settings</li></a>
-          <a href="http://github.com/tylerjwoodfin" target="_blank"><li>Item 1</li></a>
-          <a href="http://linkedin.com/in/tylerjwoodfin" target="_blank"><li>Item 2</li></a>
-          <a href="https://play.google.com/store/search?q=mouthofrandom" target="_blank" id="storePage"><li>Item 3</li></a>
+          <a onclick="toggleGreetingMode()"><li>Greeting Mode</li></a>
       </ul>
-  </div>  
+
+      <div id="greeting" style="display: none;" onclick="toggleGreetingMode()">
+        Your greeting will display here. Set in /secure/Greeting.
+      </div>
+  </div> 
     
     <div class="column1">
-        <img id="weatherIcon" src="assets/weather/offline.png" style="top: 0px; width: 100%; background-position: center center; background-repeat: no-repeat;">
-        <div style="position: absolute; left: 14%; top: 65%; z-index: -1;">
+        <img id="weatherIcon" src="assets/weather/offline.png">
+        <div style="position: absolute; left: 14%; top: 60%; z-index: -1;">
           <p id="temperature" style="font-size: 72px; font-weight:300; text-align: center;">- -°</p>
         </div>
-        <div style="text-align: center; padding-top: 5px;">
+        <div style="text-align: center; padding-top: 100%;">
           <a id="location" href="#" class="dashed">Tap to retry</a>
         </div>
     </div>
@@ -73,15 +74,15 @@
 
       
 
-      <h1 class="headline">Tasks</h1>
+      <h1 class="option" onclick="getTasks()">Tasks</h1>
 
-      <h1 class="headline">Bedtime</h1>
+      <h1 class="option" onclick="getBedtime()">Bedtime</h1>
 
-      <h1 class="headline">Lights</h1>
+      <h1 class="option">Lights</h1>
 
-      <h1 class="headline">Locks</h1>
+      <h1 class="option">Locks</h1>
 
-      <h1 class="headline">Calendar</h1>
+      <h1 class="option">Calendar</h1>
 
     </div>
 
