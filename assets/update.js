@@ -1,7 +1,7 @@
 var isGreetingMode = false;
 
 /* Read Files */
-function readFile(file)
+function readFile(file, keepComments)
 {
     var result = "";
     var rawFile = new XMLHttpRequest();
@@ -29,8 +29,20 @@ function readFile(file)
     timeOfDay = hours < 12 ? "morning" : hours < 18 ? "afternoon" : "evening"; 
     
     result = result.replace(/%time/g, timeOfDay);
+
+    /* Remove comments */
+    result = result.split("<br>");
+    finalResult = "";
+
+    for(i in result)
+    {
+        if((keepComments || result[i][0] != "#") && result[i] != '\r')
+        {
+            finalResult += result[i] + "<br>";
+        }
+    }
     
-    return result;
+    return finalResult;
 }
 
 /* Headline */
@@ -48,17 +60,13 @@ function getHeadline()
 
     for(i in greeting)
     {
-        if(greeting[i] != '\r' && greeting[i][0] != "#")
+        if(greetingHeader.length == 0)
         {
-            if(greetingHeader.length == 0)
-            {
-                greetingHeader = greeting[i];
-            }
-            else if(greetingSubHeader.length == 0)
-            {
-                console.log("Setting subheader, length " + greeting[i].length + "." + greeting[i] + ".");
-                greetingSubHeader = greeting[i];
-            }
+            greetingHeader = greeting[i];
+        }
+        else if(greetingSubHeader.length == 0)
+        {
+            greetingSubHeader = greeting[i];
         }
     }
 
@@ -104,8 +112,8 @@ function formatAMPM(date) {
 /* Get # of devices online */
 function getDevicesCount()
 {
-    scan = readFile('secure/scan.txt');
-    numberOfDevices = 0;
+    scan = readFile('secure/scan.txt', true);
+    numberOfDevices = -1;
 
     if(scan.includes("addresses ("))
     {
