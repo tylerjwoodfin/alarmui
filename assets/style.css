@@ -250,12 +250,22 @@
       padding-right: 8px;
     }
 
-    #greeting {
-      text-align: center;
-      height: 100%;
+    .greetingArea {
       display: table-cell;
       vertical-align: middle;
-      font-size: 48px;
+    }
+
+    #greeting {
+      text-align: center;
+      width: 100%;
+      font-size: 60px;
+    }
+
+    #greetingSub {
+      text-align: center;
+      width: 100%;
+      font-size: 28px;
+      color: cadetblue;
     }
 
     .column1 {
