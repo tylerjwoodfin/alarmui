@@ -46,6 +46,11 @@ function readFile(file, keepComments)
             finalResult += result[i] + "<br>";
         }
     }
+
+    if(finalResult.endsWith("<br>"))
+    {
+        finalResult = finalResult.slice(0,-4);
+    }
     
     return finalResult;
 }
@@ -86,6 +91,7 @@ const updateWeather = async () => {
 
     // if you live outside the US, replace "zip=" in the line below with something else, then edit 
     // secure/ZipCode with the parameter you chose. See https://openweathermap.org/current for details.
+
     const response = await fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + '&appid=' + apiKey);
     
     const weather = await response.json(); //extract JSON from the http response
