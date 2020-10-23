@@ -23,7 +23,7 @@ This is NOT a fully working project at this time! It's a work in progress with a
     - Check that Apache is working by going to your Pi's IP address in your browser. You should see a "It works!" page.
 
 2. Copy and paste this code into the terminal:
-    > cd /var/www/html; rm index.html; mkdir secure; cd secure; make WeatherAPI; make ZipCode; make TasksFile; make Greeting;
+    > ./setup.sh
 
 3. Place this README and everything in this current directory in /var/www/html
 
