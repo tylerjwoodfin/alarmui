@@ -178,11 +178,11 @@ function toggleGreetingMode()
 /* Execute */
 $( document ).ready(function() {
     getHeadline();
-    // updateWeather();
+    updateWeather();
     getDevicesCount();
 
     // set update intervals
-    // setInterval('updateWeather()', 300000); // update every 5 minutes
+    setInterval('updateWeather()', 300000); // update every 5 minutes
     setInterval('formatAMPM(new Date)', 1000);
     setInterval('getDevicesCount()', 60000);
     setInterval('getHeadline()', 600000);
