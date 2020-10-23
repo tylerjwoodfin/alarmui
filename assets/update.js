@@ -10,10 +10,15 @@ function readFile(file, keepComments)
     {
         if(rawFile.readyState === 4)
         {
+            console.log(rawFile);
             if(rawFile.status === 200 || rawFile.status == 0)
             {
                 var allText = rawFile.responseText.replace(/\n/g, "<br>");
                 result = allText;
+            }
+            else
+            {
+                result = "Missing: " + file;
             }
         }
     }
