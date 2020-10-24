@@ -30,6 +30,7 @@
         height: 100%;
         color: #fff;
         cursor: none;
+        overflow: hidden;
     }
 
     header {
