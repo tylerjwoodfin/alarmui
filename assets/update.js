@@ -3,8 +3,6 @@ var isGreetingMode = false;
 /* Read Files */
 function readFile(file, keepComments)
 {
-    console.log("Opening " + file);
-    
     var result = "";
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
@@ -48,7 +46,7 @@ function readFile(file, keepComments)
         }
     }
 
-    if(finalResult.endsWith("<br>"))
+    while(finalResult.endsWith("<br>"))
     {
         finalResult = finalResult.slice(0,-4);
     }
