@@ -11,5 +11,7 @@
     $filePathPointer = fopen($filepath, "r") or die("Unable to open file!");
     $filePathPointer = fread($filePathPointer,filesize($filepath));
 
+    echo $filePathPointer;
+
     echo shell_exec("rclone copy Dropbox:$filePathPointer /var/www/html/secure/cache");
 ?> 
