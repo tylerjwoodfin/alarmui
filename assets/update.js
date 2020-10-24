@@ -134,41 +134,30 @@ function getDevicesCount()
 }
 
 /* Dropbox */
-function getTasks()
+function getDropboxFile(fileType)
 {
-    tasksFile = "";
+    fileContents = "";
 
     $.ajax({
-        url: 'assets/getDropbox.php?path=TasksFile',
+        url: 'assets/getDropbox.php?path=' + fileType,
         type: 'get',
         async: false,
         success: function(response) {
-            tasksFile = readFile('secure/cache/Tasks.txt');
-            tasksFile = tasksFile == "404" ? "I can't open your Tasks file. Please set up Rclone- see the documentation for details." : tasksFile;
+            filePointer = readFile('secure/' + fileType);   
+            
+            // filePointer == the contents of /var/www/html/secure/{fileType}. The contents should be the path on Dropbox to the file.
+            // For example, filePointer = "TasksFile" -> /var/www/html/secureTasksFile contains "Notes/ToDo.txt", meaning Dropbox/Notes/Todo.txt
+
+            fileContents = readFile('secure/cache/' + filePointer.split("/")[filePointer.split("/").length-1]);
+
+            fileContents = fileContents == "404" ? "I can't open " + fileType + ". Please set up Rclone and make sure /var/www/html/secure/" + fileType + " exists and points to" 
+            + "your corresponding Dropbox file. See README.md for details." : fileContents;
          }
     });
 
-    tasksFile = tasksFile.replace(/<br>/gi, "\n");
-    alert(tasksFile);
+    fileContents = fileContents.replace(/<br>/gi, "\n");
+    alert(fileContents);
 
-}
-
-/* Bedtime */
-function getBedtime()
-{
-    bedtimeFile = "I can't open your Bedtime file. Please set up Rclone- see the documentation for details.";
-
-    $.ajax({
-        url: 'bedtime.php',
-        type: 'get',
-        async: false,
-        success: function(response) {
-            bedtimeFile = readFile('secure/cache/Bedtime.txt');
-         }
-    });
-    
-    bedtimeFile = bedtimeFile.replace(/<br>/gi, "\n");
-    alert(bedtimeFile);
 }
 
 /* Toggle Greeting Mode */
