@@ -10,7 +10,6 @@ function readFile(file, keepComments)
     {
         if(rawFile.readyState === 4)
         {
-            console.log(rawFile);
             if(rawFile.status === 200 || rawFile.status == 0)
             {
                 var allText = rawFile.responseText.replace(/\n/g, "<br>");
@@ -18,7 +17,7 @@ function readFile(file, keepComments)
             }
             else
             {
-                result = "Missing: " + file;
+                result = "404";
             }
         }
     }
@@ -137,14 +136,15 @@ function getDevicesCount()
 /* Dropbox */
 function getTasks()
 {
-    tasksFile = "I can't open your Tasks file. Please set up Rclone- see the documentation for details.";
+    tasksFile = "";
 
     $.ajax({
-        url: 'tasks.php',
+        url: 'assets/getDropbox.php?path=TasksFile',
         type: 'get',
         async: false,
         success: function(response) {
             tasksFile = readFile('secure/cache/Tasks.txt');
+            tasksFile = tasksFile == "404" ? "I can't open your Tasks file. Please set up Rclone- see the documentation for details." : tasksFile;
          }
     });
 
@@ -153,11 +153,22 @@ function getTasks()
 
 }
 
-/* Bedtime File */
+/* Bedtime */
 function getBedtime()
 {
-    nightFile = readFile("assets/bedtime.txt").split("<br>");
-    alert(nightFile);
+    bedtimeFile = "I can't open your Bedtime file. Please set up Rclone- see the documentation for details.";
+
+    $.ajax({
+        url: 'bedtime.php',
+        type: 'get',
+        async: false,
+        success: function(response) {
+            bedtimeFile = readFile('secure/cache/Bedtime.txt');
+         }
+    });
+    
+    bedtimeFile = bedtimeFile.replace(/<br>/gi, "\n");
+    alert(bedtimeFile);
 }
 
 /* Toggle Greeting Mode */
@@ -184,11 +195,11 @@ function toggleGreetingMode()
 /* Execute */
 $( document ).ready(function() {
     getHeadline();
-    updateWeather();
+    // updateWeather();
     getDevicesCount();
 
     // set update intervals
-    setInterval('updateWeather()', 300000); // update every 5 minutes
+    // setInterval('updateWeather()', 300000); // update every 5 minutes
     setInterval('formatAMPM(new Date)', 1000);
     setInterval('getDevicesCount()', 60000);
     setInterval('getHeadline()', 600000);
