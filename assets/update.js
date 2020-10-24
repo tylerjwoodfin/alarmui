@@ -3,6 +3,8 @@ var isGreetingMode = false;
 /* Read Files */
 function readFile(file, keepComments)
 {
+    console.log("Opening " + file);
+    
     var result = "";
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
@@ -150,7 +152,7 @@ function getDropboxFile(fileType)
 
             fileContents = readFile('secure/cache/' + filePointer.split("/")[filePointer.split("/").length-1]);
 
-            fileContents = fileContents == "404" ? "I can't open " + fileType + ". Please set up Rclone and make sure /var/www/html/secure/" + fileType + " exists and points to" 
+            fileContents = fileContents == "404" ? "I can't open " + fileType + ". Please set up Rclone and make sure /var/www/html/secure/" + fileType + " exists and points to " 
             + "your corresponding Dropbox file. See README.md for details." : fileContents;
          }
     });
