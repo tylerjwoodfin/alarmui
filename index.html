@@ -11,9 +11,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <meta name="description" content="Tyler Woodfin is a software consultant in Austin, Texas.">
-    <meta name="keywords" content="tyler, woodfin, consultant, austin">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->   
     <link href="../assets/favicon.ico" rel="shortcut icon"/>
@@ -26,8 +23,6 @@
 
   </head>
 
-  <!-- Thanks for looking at my source code! If you'd like to know more about my skills and qualifications, please request a resume through the feedback link on this page. -->
-
   <body>
 
     <header>
@@ -36,8 +31,13 @@
       </nav>
       
   </header>
+
+  <div id="poweroff">
+    <em class="fa fa-power-off" onclick="powerOff()"></em>
+  </div>
   
   <div class="mobile-menu">
+
       <div id="hamburger">
         <div class="line" id="one"></div>
         <div class="line" id="two"></div>
@@ -102,6 +102,6 @@
   document.getElementById("hamburger").addEventListener("click", function(){
           this.classList.toggle("active");
           document.querySelector(".mobile-menu").classList.toggle("active");
-      });
+  });
 
 </script>

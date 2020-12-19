@@ -94,6 +94,16 @@
       /* display: flex; */
     }
 
+    #poweroff {
+      position: fixed;
+      right: 75px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+      top: 5%;
+    }
+
     #hamburger {
       position: fixed;
       right: 25px;
@@ -242,6 +252,10 @@
       color: whitesmoke;
       font-size: 32px;
       padding-right: 8px;
+    }
+
+    .fa-power-off {
+      font-size: 40px;
     }
 
     .fa-clock-o {

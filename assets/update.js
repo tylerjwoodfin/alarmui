@@ -133,7 +133,7 @@ function getDevicesCount()
     document.getElementById("deviceCount").innerHTML = `<em class="fa fa-cloud" aria-hidden="true"></em>` + numberOfDevices +` devices online`;
 }
 
-/* Dropbox */
+/* Get files from Dropbox */
 function getDropboxFile(fileType)
 {
     fileContents = "";
@@ -148,16 +148,35 @@ function getDropboxFile(fileType)
             // filePointer == the contents of /var/www/html/secure/{fileType}. The contents should be the path on Dropbox to the file.
             // For example, filePointer = "TasksFile" -> /var/www/html/secureTasksFile contains "Notes/ToDo.txt", meaning Dropbox/Notes/Todo.txt
 
-            fileContents = readFile('secure/cache/' + filePointer.split("/")[filePointer.split("/").length-1]);
+            fileContents = readFile('secure/cache/' + filePointer.split("/")[filePointer.split("/").length-1], true);
 
             fileContents = fileContents == "404" ? "I can't open " + fileType + ". Please set up Rclone and make sure /var/www/html/secure/" + fileType + " exists and points to " 
             + "your corresponding Dropbox file. See README.md for details." : fileContents;
          }
     });
 
-    fileContents = fileContents.replace(/<br>/gi, "\n");
-    alert(fileContents);
+    showChecklist(fileContents.split("<br>"));
 
+}
+
+/* Turn Raspberry Pi screen off */
+function powerOff()
+{
+    $.ajax({
+        url: 'assets/screenOff.php',
+        type: 'get',
+        async: false,
+        success: function(response) {
+            // ok
+         }
+    });
+
+}
+
+/* Show an array as a checklist */
+function showChecklist(lineArray)
+{
+    console.log(lineArray);
 }
 
 /* Toggle Greeting Mode */
