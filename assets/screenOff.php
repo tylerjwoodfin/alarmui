@@ -1,4 +1,3 @@
 <?php
-
-    echo shell_exec("xset dpms force off");
+    echo shell_exec("xset -display :0 dpms force off");
 ?> 
